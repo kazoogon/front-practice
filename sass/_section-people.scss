@@ -1,0 +1,245 @@
+.section-people {
+    padding: 25rem 0 15rem 0;
+    margin-top: -10rem;
+    background-color: var(--color-background);
+
+    &__title {
+        text-align: center;
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: 2px;
+        background-image: linear-gradient(to right, var(--color-primary), var(--color-primary-dark));
+        -webkit-background-clip: text;
+        color: transparent;
+        margin-bottom: 3rem;
+    }
+
+    &__btn{
+        text-align: center;
+        margin-top: 5rem;
+    }
+}
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 2.5rem;
+    border-radius: 4px;
+
+    @include respond(tab-port) {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.card{
+    perspective: 150rem;
+    -moz-perspective: 150rem;
+    height: 50rem;
+    width: 33.333333%;
+    position: relative;
+
+    @include respond(tab-port) {
+        width: 90%;
+        max-width: 50rem;
+        margin-bottom: 5rem;
+    }
+
+    &__side {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50rem;
+        border-radius: 4px;
+        box-shadow: var(--shadow-dark);
+        backface-visibility: hidden; //回転した状態では非表示
+        -webkit-backface-visibility: hidden;
+        transition: all 1s;
+
+        &--front {
+            background-color: white;
+        }
+
+        &--back {
+            transform: rotateY(180deg);
+
+            &-1 {
+                background-image: linear-gradient(to right bottom, #ED213A, #ffc500)
+            }
+
+            &-2 {
+                background-image: linear-gradient(to right bottom, #56ab2f, #a8e063)
+            }
+
+            &-3 {
+                background-image: linear-gradient(to right bottom, #00B4DB, #0083B0)
+            }
+        }
+    }
+
+    &__cta {
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+    }
+
+    &__price-box {
+        text-align: center;
+        color: white;
+    }
+
+    &__price-only {
+        font-size: 1.4rem;
+        text-transform: uppercase;
+    }
+
+    &__price-value {
+        font-size: 6rem;
+        font-weight: 100;
+        margin-bottom: 3rem;
+    }
+
+    &:hover &__side--front {
+        transform: rotateY(-180deg);
+    }
+
+    &:hover &__side--back {
+        transform: rotateY(0);
+    }
+
+    &:not(:last-child){
+        margin-right: 5rem;
+
+        @include respond(tab-port) {
+            margin-right: 0;
+        }
+    }
+
+    &__picture {
+        background-size: cover;
+        background-blend-mode: screen; //背景画像にgradientの場合これ
+        height: 23rem;
+        width: 100%;
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+        &--1{
+            background-image: linear-gradient(
+                to right bottom, #ED213A, #ffc500),
+                url(../img/happy-lady.jpg);
+        }
+
+        &--2{
+            background-image: linear-gradient(
+                to right bottom, #56ab2f, #a8e063),
+                url(../img/man1.jpg);
+        }
+
+        &--3{
+            background-image: linear-gradient(
+                to right bottom, #00B4DB, #0083B0),
+                url(../img/masaki.jpg);
+        }
+    }
+
+    &__heading {
+        font-size: 2.8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        color: white;
+        text-align: right;
+        position: absolute;
+        top: 16rem;
+        right: 2rem;
+        width: 65%;
+
+        &-span {
+            padding: 1rem 1.5rem;
+
+            &--1 {
+                background-image: linear-gradient(to right bottom, 
+                rgba(#ED213A, .85),
+                rgba(#ffc500, .85));
+            }
+
+            &--2 {
+                background-image: linear-gradient(to right bottom, 
+                rgba(#56ab2f, .85),
+                rgba(#a8e063, .85));
+            }
+
+            &--3 {
+                background-image: linear-gradient(to right bottom, 
+                rgba(#00B4DB, .85),
+                rgba(#0083B0, .85));
+            }
+        }
+    }
+
+    &__detail {
+        padding: 3rem;
+        ul {
+            list-style: none;
+            margin: auto 0;
+
+            li {
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 1rem;
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid var(--color-grey-light-3);
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 56.25em), //タッチパネルのでかいので、hover機能を消す
+           only screen and(hover: none) { 
+        height:auto;
+        border-radius: 3px;
+        background-color: #fff;
+        box-shadow: 0 1.5rem 4rem rgba(#000, .15);
+
+        &__side {
+            font-size: 2rem;
+            height: auto;
+            position: relative; 
+            box-shadow: none;
+            
+            &--back {
+                transform: rotateY(0); //通常時は180°回転させておく
+                clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+            }
+        }
+
+        &:hover &__side--front{
+            transform: rotateY(0); //回転!!!
+        }
+
+        &:hover &__side--back{
+            transform: rotateY(0); //回転!!!
+        }
+
+        &__cta {
+            position: relative;
+            top: 0%;
+            left: 0%;
+            transform: translate(0);
+            padding: 7rem 4rem 4rem 4rem;
+            width: 100%;
+        }
+
+        &__price-box{
+            margin-bottom: 3rem;
+        }
+
+        &__price-value {
+            font-size: 6rem;
+        }
+    }
+}

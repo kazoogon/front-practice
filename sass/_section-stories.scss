@@ -1,0 +1,91 @@
+.section-stories {
+    position: relative;
+    padding: 5rem 0;
+    background-image: 
+        linear-gradient(
+            to right bottom, 
+            rgba(#d9a7c7, 0.8),  //ここ変数入れたら出力されん問題todo
+            rgba(#fffcdc, 0.8)),
+        url(../img/warsaw-poland.jpg);
+    background-size: cover;
+
+    &__title{
+        text-align: center;
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+
+        background-image: linear-gradient(to right, var(--color-primary), var(--color-primary-dark));
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+}
+
+.story{
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: --shadow-dark;
+    background-color: rgba(#fff, .6);
+    border-radius: 4px;
+    padding: 5rem;
+    font-size: var(--default-font-size);
+    transform: skewX(-12deg);
+
+    @include respond(phone) {
+        transform: skewX(0);
+    }
+
+    &__shape {
+        width: 15rem;
+        height: 15rem;
+        float: left;
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+        -webkit-clip-path: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+        transform: translateX(-3rem) skewX(12deg);
+
+        @include respond(phone) {
+            transform: translateX(-3rem) skewX(0);
+        }
+    }
+
+    &__img {
+        height:100%;
+        transform: scale(1.2);
+        transition: all .5s;
+    }
+
+    &__text{
+        transform: skewX(12deg);
+    }
+
+    &:not(:last-child){
+        margin-bottom: 5rem;
+    }
+
+    &__caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        opacity: 0;
+        transition: all .5s;
+    }
+
+    &:hover &__caption {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover &__img {
+        transform: scale(1);
+        filter: blur(3px) brightness(80%);
+    }
+}

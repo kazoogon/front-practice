@@ -1,0 +1,71 @@
+:root {
+    --color-primary: #edbcbc;
+    --color-primary-light: #e48a76;
+    --color-primary-dark: #c84289;
+
+    --color-background: #f7f7f7; //footer text color as well
+
+    --color-grey-light-1: #faf9f9;
+    --color-grey-light-2: #f4f2f2;
+    --color-grey-light-3: #f0eeee;
+    --color-grey-light-4: #ccc;
+
+    --color-grey-dark-1: #333; //for footer backgound
+    --color-grey-dark-2: #777;
+    --color-grey-dark-3: #999;
+
+    --shadow-dark:0 2rem 6rem rgba(0,0,0,.3);
+    --shadow-light:0 2rem 5rem rgba(0,0,0,.06);
+
+    --default-font-size: 1.6rem;
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { 
+	/*
+		親要素のfont-sizeを頼りにremは設定される。
+		　→bodyやhtml要素でfont-sizeを62.5%にしておくと、デフォルト設定の時の基準が16pxの62.5%。
+		　→つまり1rem = 10px
+	*/
+	font-size: 62.5%; 
+
+    @include respond(tab-land) { // width < 1200?
+        font-size: 56.25%; //1 rem = 9px, 9/16 = 50%
+    }
+
+    @include respond(tab-port) { // width < 900?
+        font-size: 50%; //1 rem = 8px, 8/16 = 50%
+    }
+
+    @include respond(phone) { 
+		font-size: 30%;
+	}
+    
+    @include respond(big-desktop) {
+        font-size: 75%; //1rem = 12, 12/16
+    }
+}
+
+body {
+    padding: 3rem;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #777;
+
+    @include respond(tab-port) {
+        padding: 0;
+    }
+}
+
+::selection {
+    background-color: --color-primary;
+    color: white;
+}

@@ -1,0 +1,36 @@
+.btn {
+
+    &, //<button>にはlinkもvisiteｍｎないから
+    &:link,
+    &:visited {
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        font-size: 1.6rem;
+        text-decoration: none;
+        border-radius: 100px;
+        cursor: pointer;
+
+        animation: moveInBottom .5s ease-out .75s;
+        animation-fill-mode: backwards; //animation始まる前にボタンが見えているのを防ぐ
+        transition: all .5s;
+
+        //Change for the <button> element
+        border: none;
+        cursor: pointer;
+    }
+
+    &:hover {
+        transform: translateY(-0.5rem);
+        box-shadow: var(--shadow-dark);
+    }
+
+    &--white {
+        background-color: #fff;
+        color: var(--color-primary-dark);
+    }
+
+    &--purple {
+        background-color: var(--color-primary-dark);
+        color: #fff;
+    }
+}

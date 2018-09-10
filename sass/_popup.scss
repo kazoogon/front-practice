@@ -1,0 +1,102 @@
+.popup {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(#000, .8);
+    z-index: 9999;
+
+    //display: none; //これするとanimation効かないので↓
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__content {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    &__close {
+        &:link,
+        &:visited {
+            color: var(--color-grey-dark-1);
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all .2s;
+            line-height: 1;
+        }
+
+        &:hover {
+            color: var(--color-primary-dark);
+        }
+    }
+
+    .heading-secondary {
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+
+        background-image: linear-gradient(to right, var(--color-primary), var(--color-primary-dark));
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    .heading-tertiary {
+        font-size: 2rem;
+    }
+
+    &__content {
+        @include absCenter;
+        width: 75%;
+        background-color: #fff;
+        box-shadow: 0 2rem 4rem rgba(#000, .2);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        transition: all .4s .2s;
+
+        //元々は半分の大きさで targetされたらでっかすするで
+        transform: translate(-50%, -50%) scale(.25);
+        opacity: 0;
+    }
+
+    &__left {
+        width: 33.333333333%;
+    }
+
+    &__right {
+        width: 66.6666666%;
+        padding: 3rem 5rem;
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+    }
+
+    &__text {
+        font-size:1.4rem;
+        margin-bottom: 2rem;
+
+        column-count: 2; 
+        column-gap: 4rem; 
+        column-rule: 1px solid var(--color-grey-light-4);
+
+        hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+    }
+}

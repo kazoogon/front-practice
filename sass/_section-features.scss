@@ -1,0 +1,57 @@
+.section-features{
+    padding: 20rem 0;
+    margin-top: -8rem;
+    background-image: linear-gradient(
+		to right bottom,
+		 rgba(#e48a76, 0.8),  //変数使ったら画像表示されないtodo
+		 rgba(#c84289, 0.8)),  
+    url(../img/poland_city.jpg);
+    background-size: cover;
+    transform: skewY(-7deg);
+
+    .row {
+        transform: skewY(7deg); 
+        display: flex;
+        margin: auto 3rem;
+
+        @include respond(tab-port) {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    .feature-box {
+        background-color: rgba(#fff, 0.8);
+        font-size: 1.5rem;
+        padding: 2.5rem;
+        text-align: center;
+        border-radius: 4px;
+        box-shadow: var(--shadow-dark);
+        transition: all .5s;
+
+        &:not(:last-child) {
+            margin-right: 2rem;
+            @include respond(tab-port) {
+                margin-right: 0;
+            }
+        }
+
+        &:hover {
+            transform: translateY(-1.5rem) scale(1.04);
+            cursor: pointer;
+        }
+
+        &__icon {
+            font-size: 6rem;
+            margin-bottom: .5rem;
+            display: inline-block;
+            background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        @include respond(tab-port) {
+            margin-bottom: 3rem;
+            max-width: 50rem;
+        }
+    }
+}

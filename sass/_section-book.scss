@@ -1,0 +1,144 @@
+.section-book {
+    background-image: linear-gradient(
+        to right bottom, 
+        var(--color-primary-light), 
+        var(--color-primary-dark));
+    padding: 10rem 0;
+}
+
+.book {
+
+    margin: 0 auto;
+    width: 80%;
+    background-image: linear-gradient(105deg,//これ設定しないとただ上からしたにgradation
+        rgba(#fff, .9) 0%, 
+        rgba(#fff, .9) 50%, //0~50%まではただの白 
+        transparent 50%),     //そっからは透明
+        url(../img/poland-lake.jpg);
+    background-size: cover;
+    height: 50rem;
+    border-radius: 4px;
+    box-shadow: --shadow-dark;
+
+    @include respond(tab-port) {
+        background-image:linear-gradient(to right, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%), url(../img/poland-lake.jpg);
+    }
+
+    &__title {
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+
+        background-image: linear-gradient(to right, var(--color-primary), var(--color-primary-dark));
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    &__form {
+        width: 50%;
+        padding: 6rem;
+
+        @include respond(tab-port) {
+            width: 100%;
+        }
+    }
+}
+
+.form {
+
+    &__group {
+        margin-bottom: 2rem;
+    }
+
+    &__input {
+        font-size: 1.5rem;
+        font-family: inherit;
+        color: inherit;
+        padding: 1.5rem 2rem;
+        border-radius: 2px;
+        background-color: rgba(#fff, .5);
+        border: none;
+        border-bottom: 3px solid transparent;
+        width: 90%;
+        display: block;
+        transition: all .3s;
+
+        &:focus {
+            outline: none;
+            box-shadow: var(--shadow-light);
+            border-bottom: 3px solid var(--color-primary-dark);
+        }
+
+        &:focus:invalid { //invalidの場合ｋこれだけの設定でokなんか。。。
+            border-bottom: 3px solid #ffb900;
+        }
+
+        &::-webkit-input-placeholder {
+            color: var(--color-grey-dark-2);
+        }
+    }
+
+    &__label {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-top: 2rem;
+        margin-top: .7rem;
+        display: block;
+    }
+
+    //placeholderｈ表示されとるとき
+    //なんか文字入ｓされたらこのclass消える
+    &__input:placeholder-shown + &__label { 
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-4rem);
+    }
+
+    &__radio-group {
+        width: 49%;
+        display: inline-block;
+    }
+
+    &__radio-label {
+        font-size: var(--default-font-size);
+        cursor: pointer;
+        position: relative;
+        padding-left: 4rem;
+    }
+
+    &__radio-button { //radioボタン外の枠
+        height: 3rem;
+        width: 3rem;
+        border: 5px solid var(--color-primary-dark);
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+
+        &::after { //radioボタンの中の丸
+            content: "";
+            display: block;
+            height: 1.3rem;
+            width: 1.3rem;
+            border-radius: 50%;
+            position: absolute;
+            background-color: var(--color-primary-dark);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity .2s;
+        }
+    }
+
+    &__radio-input {
+        display: none;
+    }
+
+    //radioボタンcheckedｎなったら、radio-labelの子要素radio-button::afterがこうなりますよ
+    &__radio-input:checked ~ &__radio-label &__radio-button::after {
+        opacity: 1;
+    }
+}
