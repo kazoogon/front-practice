@@ -1,18 +1,26 @@
 var http = require('http');
-var fs = require('fs');
+var fs   = require('fs');
 var path = require('path');
 var mime = {
-    ".html": "text/html",
-    ".css":  "text/css"
+  ".html": "text/html",
+  ".css":  "text/css"
 };
 
-fs.readFile('./index.html', function (err, html) {
+var http_server = new http.createServer(function(req, res) {
 
-    if (err) throw err;    
+  if (req.url == '/') {
+    filePath = '/index.html';
+  } else {
+    filePath = req.url;
+  }
+  var fullPath = __dirname + filePath;
 
-    http.createServer(function(request, res) {  
-        res.writeHead(200, {"Content-Type": mime[path.extname(fullPath)] || "text/plain"});  
-        res.write(html);  
-        res.end();  
-    }).listen(process.env.PORT || 5000)
-});
+  res.writeHead(200, {"Content-Type": mime[path.extname(fullPath)] || "text/plain"});
+  fs.readFile(fullPath, function(err, data) {
+    if (err) {
+      
+    } else {
+      res.end(data, 'UTF-8');
+    }
+  });
+}).listen(process.env.PORT || 5000)
